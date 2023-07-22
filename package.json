@@ -1,0 +1,33 @@
+{
+  "name": "microtonal-cyclic-polyrhythm-generator",
+  "version": "1.0.0",
+  "description": "Generates cyclic polyrhythms with a microtonal set of notes.",
+  "main": "index.js",
+  "type": "module",
+  
+  "scripts": {
+    "dev": "tsc --watch",
+    "generate": "tsc && node dist/index.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/PerryRylance/microtonal-cyclic-polyrhythm-generator.git"
+  },
+  "keywords": [
+    "Microtonal",
+    "MIDI",
+    "Cyclic",
+    "Polyrhythm"
+  ],
+  "author": "Perry Rylance",
+  "license": "CC-BY-3.0",
+  "bugs": {
+    "url": "https://github.com/PerryRylance/microtonal-cyclic-polyrhythm-generator/issues"
+  },
+  "homepage": "https://github.com/PerryRylance/microtonal-cyclic-polyrhythm-generator#readme",
+  "dependencies": {
+    "@perry-rylance/midi": "^1.0.2",
+    "@types/node": "^20.4.2"
+  }
+}
