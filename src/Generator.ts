@@ -1,5 +1,5 @@
-import { File, Track, ProgramChangeEvent, ProgramType, EndOfTrackEvent, NoteOnEvent, NoteOffEvent } from "@perry-rylance/midi"
-import MicrotonalNoteOnEvent from "./events/MicrotonalNoteOnEvent.js";
+import { File, Track, ProgramChangeEvent, ProgramType, EndOfTrackEvent, NoteOffEvent } from "@perry-rylance/midi"
+import MicrotonalNoteOnEvents from "./events/MicrotonalNoteOnEvents";
 
 export default class Generator
 {
@@ -14,8 +14,9 @@ export default class Generator
 
 		const pitchesPerOctave	= 10;
 		const octaves			= 1.5;
-		const scalePitches		= [];
 		const numPitches		= Math.max(15, Math.floor(pitchesPerOctave * octaves));
+
+		const scalePitches: number[] = [];
 
 		for(let i = 0; i < numPitches; i++)
 			scalePitches.push(60 + ((i / pitchesPerOctave) * (12 * octaves)));
@@ -35,12 +36,10 @@ export default class Generator
 
 			for(let absolute = 0; absolute < maximumTicks; absolute += advance)
 			{
-				
-
 				const nextAbsolute	= (absolute + advance);
 				const roundedDelta	= Math.round(nextAbsolute - absolute);
 
-				const on			= new MicrotonalNoteOnEvent();
+				const on			= new MicrotonalNoteOnEvents();
 				const off			= new NoteOffEvent();
 
 				on.channel = off.channel = channel;
@@ -50,7 +49,7 @@ export default class Generator
 
 				off.delta			= roundedDelta;
 
-				track.events.push(on, off);
+				track.events.push(...on, off);
 			}
 			
 			track.events.push(new EndOfTrackEvent());
